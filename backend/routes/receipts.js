@@ -709,6 +709,24 @@ router.get('/', (req, res) => {
   });
 });
 
+// Get unmatched receipts
+router.get('/unmatched/list', (req, res) => {
+  const query = `
+    SELECT * FROM receipts r
+    WHERE r.id NOT IN (
+      SELECT receipt_id FROM matches WHERE user_confirmed = 1
+    )
+    AND r.processing_status = 'completed'
+    ORDER BY r.upload_date DESC
+  `;
+
+  db.all(query, [], (err, rows) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    res.json(rows);
+  });
+});
 // Get single receipt
 router.get('/:id', (req, res) => {
   const query = `
@@ -869,23 +887,5 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-// Get unmatched receipts
-router.get('/unmatched/list', (req, res) => {
-  const query = `
-    SELECT * FROM receipts r
-    WHERE r.id NOT IN (
-      SELECT receipt_id FROM matches WHERE user_confirmed = 1
-    )
-    AND r.processing_status = 'completed'
-    ORDER BY r.upload_date DESC
-  `;
-
-  db.all(query, [], (err, rows) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
-    res.json(rows);
-  });
-});
 
 module.exports = router; 
