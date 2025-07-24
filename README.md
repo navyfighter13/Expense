@@ -203,6 +203,21 @@ Multiple extraction strategies in priority order:
 - `PUT /api/matches/:id` - Update match status
 - `DELETE /api/matches/:id` - Delete match
 
+## Running Backend Tests
+
+Ensure backend dependencies are installed:
+
+```bash
+cd backend
+npm install
+```
+
+Run the Jest test suite:
+
+```bash
+npm test
+```
+
 ## Contributing
 
 1. Fork the repository
