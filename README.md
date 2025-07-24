@@ -213,4 +213,4 @@ Multiple extraction strategies in priority order:
 
 ## License
 
-Private repository - All rights reserved. 
+Private repository - All rights reserved.
