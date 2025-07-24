@@ -212,5 +212,3 @@ Multiple extraction strategies in priority order:
 5. Open Pull Request
 
 ## License
-
-Private repository - All rights reserved.
