@@ -213,4 +213,5 @@ Multiple extraction strategies in priority order:
 
 ## License
 
-Private repository - All rights reserved. 
+This project is licensed under the MIT License.
+Some files may be proprietary and are not covered by this license.
