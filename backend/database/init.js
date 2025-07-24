@@ -1,7 +1,8 @@
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-const dbPath = path.join(__dirname, 'expense_matcher.db');
+// Allow overriding the database path (useful for tests)
+const dbPath = process.env.DB_PATH || path.join(__dirname, 'expense_matcher.db');
 
 // Create database connection
 const db = new sqlite3.Database(dbPath, (err) => {
