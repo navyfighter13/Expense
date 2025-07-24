@@ -75,7 +75,8 @@ router.get('/', (req, res) => {
 });
 
 // Get single transaction
-router.get('/:id', (req, res) => {
+// Use a numeric id parameter so that other routes like /import are not intercepted
+router.get('/:id(\\d+)', (req, res) => {
   const query = `
     SELECT t.*, 
            GROUP_CONCAT(r.original_filename) as receipts,
@@ -282,7 +283,8 @@ router.post('/import', csvUpload.single('csvFile'), (req, res) => {
 });
 
 // Update transaction
-router.put('/:id', (req, res) => {
+// numeric id ensures proper routing
+router.put('/:id(\\d+)', (req, res) => {
   const { description, amount, category } = req.body;
   
   const query = `
@@ -303,7 +305,7 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete transaction
-router.delete('/:id', (req, res) => {
+router.delete('/:id(\\d+)', (req, res) => {
   db.run('DELETE FROM transactions WHERE id = ?', [req.params.id], function(err) {
     if (err) {
       return res.status(500).json({ error: err.message });

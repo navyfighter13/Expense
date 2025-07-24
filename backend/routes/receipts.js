@@ -710,7 +710,8 @@ router.get('/', (req, res) => {
 });
 
 // Get single receipt
-router.get('/:id', (req, res) => {
+// Limit id to digits so /unmatched/list does not get captured
+router.get('/:id(\\d+)', (req, res) => {
   const query = `
     SELECT r.*, 
            GROUP_CONCAT(t.description) as matched_transactions,
@@ -823,7 +824,7 @@ router.post('/upload', upload.single('receipt'), async (req, res) => {
 });
 
 // Update receipt
-router.put('/:id', (req, res) => {
+router.put('/:id(\\d+)', (req, res) => {
   const { extracted_amount, extracted_date, extracted_merchant } = req.body;
   
   const query = `
@@ -844,7 +845,7 @@ router.put('/:id', (req, res) => {
 });
 
 // Delete receipt
-router.delete('/:id', (req, res) => {
+router.delete('/:id(\\d+)', (req, res) => {
   // First get the receipt to delete the file
   db.get('SELECT file_path FROM receipts WHERE id = ?', [req.params.id], (err, row) => {
     if (err) {
