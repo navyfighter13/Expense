@@ -226,7 +226,7 @@ const Receipts = () => {
                         <div className="flex gap-1">
                           {receipt.file_path && (
                             <a
-                              href={`http://localhost:5000/uploads/receipts/${receipt.filename}`}
+                              href={`http://localhost:6533/uploads/receipts/${receipt.filename}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="btn btn-sm btn-secondary"

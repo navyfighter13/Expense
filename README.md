@@ -89,7 +89,7 @@ npm run dev
 ```
 
 This starts both:
-- Backend server: http://localhost:5000
+- Backend server: http://localhost:6533
 - Frontend app: http://localhost:3000
 
 ## Usage

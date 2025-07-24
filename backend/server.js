@@ -12,7 +12,7 @@ const receiptRoutes = require('./routes/receipts');
 const matchRoutes = require('./routes/matches');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 6533;
 
 // Middleware
 app.use(cors());
